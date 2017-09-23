@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1779CB761F75917500C6A31F /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779CB751F75917500C6A31F /* MPCManager.swift */; };
+		1779CB781F7598A500C6A31F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779CB771F7598A500C6A31F /* LoginViewController.swift */; };
+		1779CB7A1F759C4B00C6A31F /* ValidateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779CB791F759C4B00C6A31F /* ValidateUser.swift */; };
+		17CDE3071F75A1CF006A4E7A /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CDE3061F75A1CF006A4E7A /* UserManager.swift */; };
 		49FB93CD1F740B980013B062 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB93CC1F740B980013B062 /* AppDelegate.swift */; };
 		49FB93CF1F740B980013B062 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB93CE1F740B980013B062 /* MainViewController.swift */; };
 		49FB93D11F740B980013B062 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FB93D01F740B980013B062 /* Assets.xcassets */; };
@@ -18,7 +22,7 @@
 		49FB94041F740D800013B062 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB93FF1F740D800013B062 /* BackgroundView.swift */; };
 		49FB94051F740D800013B062 /* ChapterEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB94011F740D800013B062 /* ChapterEditViewController.swift */; };
 		49FB94061F740D800013B062 /* GuidelineOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB94021F740D800013B062 /* GuidelineOutlineView.swift */; };
-		49FB94071F740D800013B062 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB94031F740D800013B062 /* ViewController.swift */; };
+		49FB94071F740D800013B062 /* GuidelineListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB94031F740D800013B062 /* GuidelineListViewController.swift */; };
 		49FB940F1F740DC00013B062 /* AppListDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB94091F740DC00013B062 /* AppListDownloader.swift */; };
 		49FB94101F740DC00013B062 /* GuidelineListDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB940A1F740DC00013B062 /* GuidelineListDownloader.swift */; };
 		49FB94111F740DC00013B062 /* GuidelineTOCDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB940B1F740DC00013B062 /* GuidelineTOCDownloader.swift */; };
@@ -27,6 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1779CB741F75857100C6A31F /* VSTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSTextView.swift; sourceTree = "<group>"; };
+		1779CB751F75917500C6A31F /* MPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
+		1779CB771F7598A500C6A31F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1779CB791F759C4B00C6A31F /* ValidateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUser.swift; sourceTree = "<group>"; };
+		17CDE3061F75A1CF006A4E7A /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		49FB93C91F740B980013B062 /* BBConfigurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBConfigurator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FB93CC1F740B980013B062 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49FB93CE1F740B980013B062 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +49,7 @@
 		49FB93FF1F740D800013B062 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		49FB94011F740D800013B062 /* ChapterEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChapterEditViewController.swift; sourceTree = "<group>"; };
 		49FB94021F740D800013B062 /* GuidelineOutlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidelineOutlineView.swift; sourceTree = "<group>"; };
-		49FB94031F740D800013B062 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		49FB94031F740D800013B062 /* GuidelineListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidelineListViewController.swift; sourceTree = "<group>"; };
 		49FB94091F740DC00013B062 /* AppListDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppListDownloader.swift; sourceTree = "<group>"; };
 		49FB940A1F740DC00013B062 /* GuidelineListDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidelineListDownloader.swift; sourceTree = "<group>"; };
 		49FB940B1F740DC00013B062 /* GuidelineTOCDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidelineTOCDownloader.swift; sourceTree = "<group>"; };
@@ -59,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1779CB731F75857100C6A31F /* VSTextView */ = {
+			isa = PBXGroup;
+			children = (
+				1779CB741F75857100C6A31F /* VSTextView.swift */,
+			);
+			path = VSTextView;
+			sourceTree = "<group>";
+		};
 		49FB93C01F740B980013B062 = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +112,9 @@
 		49FB93DC1F740C180013B062 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1779CB751F75917500C6A31F /* MPCManager.swift */,
 				49FB93E31F740CEE0013B062 /* TocCreator.swift */,
+				17CDE3061F75A1CF006A4E7A /* UserManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -120,6 +139,7 @@
 		49FB93FD1F740D800013B062 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1779CB731F75857100C6A31F /* VSTextView */,
 				49FB93FE1F740D800013B062 /* BackgroundView */,
 				49FB94001F740D800013B062 /* ViewController */,
 			);
@@ -139,7 +159,8 @@
 			children = (
 				49FB94011F740D800013B062 /* ChapterEditViewController.swift */,
 				49FB94021F740D800013B062 /* GuidelineOutlineView.swift */,
-				49FB94031F740D800013B062 /* ViewController.swift */,
+				49FB94031F740D800013B062 /* GuidelineListViewController.swift */,
+				1779CB771F7598A500C6A31F /* LoginViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -147,10 +168,11 @@
 		49FB94081F740DC00013B062 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				49FB940C1F740DC00013B062 /* HTTPRequest */,
 				49FB94091F740DC00013B062 /* AppListDownloader.swift */,
 				49FB940A1F740DC00013B062 /* GuidelineListDownloader.swift */,
 				49FB940B1F740DC00013B062 /* GuidelineTOCDownloader.swift */,
-				49FB940C1F740DC00013B062 /* HTTPRequest */,
+				1779CB791F759C4B00C6A31F /* ValidateUser.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -238,18 +260,22 @@
 			files = (
 				49FB94111F740DC00013B062 /* GuidelineTOCDownloader.swift in Sources */,
 				49FB940F1F740DC00013B062 /* AppListDownloader.swift in Sources */,
+				17CDE3071F75A1CF006A4E7A /* UserManager.swift in Sources */,
 				49FB94101F740DC00013B062 /* GuidelineListDownloader.swift in Sources */,
-				49FB94071F740D800013B062 /* ViewController.swift in Sources */,
+				49FB94071F740D800013B062 /* GuidelineListViewController.swift in Sources */,
 				49FB93F31F740D0D0013B062 /* App.swift in Sources */,
 				49FB94131F740DC00013B062 /* HTTPRequestManager.swift in Sources */,
+				1779CB761F75917500C6A31F /* MPCManager.swift in Sources */,
 				49FB93E41F740CEE0013B062 /* TocCreator.swift in Sources */,
 				49FB93CF1F740B980013B062 /* MainViewController.swift in Sources */,
 				49FB94041F740D800013B062 /* BackgroundView.swift in Sources */,
 				49FB93F51F740D0D0013B062 /* Guideline.swift in Sources */,
 				49FB93CD1F740B980013B062 /* AppDelegate.swift in Sources */,
 				49FB94061F740D800013B062 /* GuidelineOutlineView.swift in Sources */,
+				1779CB781F7598A500C6A31F /* LoginViewController.swift in Sources */,
 				49FB94121F740DC00013B062 /* HTTPRequest.swift in Sources */,
 				49FB94051F740D800013B062 /* ChapterEditViewController.swift in Sources */,
+				1779CB7A1F759C4B00C6A31F /* ValidateUser.swift in Sources */,
 				49FB93F41F740D0D0013B062 /* Chapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +433,7 @@
 				49FB93DA1F740B980013B062 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,6 +8,13 @@
 
 import Cocoa
 
+enum Format: Int {
+    
+    case UnknownFormat = 1
+    case OldFormat = 2
+    case NewFormat = 3
+}
+
 class Guideline: NSObject {
     
     var id: String = ""
@@ -16,6 +23,7 @@ class Guideline: NSObject {
     var app: App!
     var rootChapters: [Chapter] = []
     var rootChaptersData: NSArray = []
+    var format: Format = .UnknownFormat
     
     init(_ dictionary: NSDictionary, app: App) {
         
@@ -72,6 +80,30 @@ class Guideline: NSObject {
             print("Error: \(error.localizedDescription)")
         }
         //print("tocTreeJsonArray: \(tocTreeJsonArray)")
+    }
+    
+    func getTocTreeString() -> String {
+        
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        
+        let filePath = "\(documentDirectory)/AppMaker/Toc/\(app.projectId!)/\(uniqueId)/TocTree.json"
+        
+        if FileManager.default.fileExists(atPath: filePath) {
+            
+            let fileURL = URL(fileURLWithPath: filePath)
+
+            
+            do {
+                
+                return try String(contentsOf: fileURL)
+            }
+            catch {
+                
+                print("Error -> \(error)")
+            }
+        }
+        
+        return ""
     }
     
     func updateConnectedPeers() {

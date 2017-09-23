@@ -8,13 +8,15 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class GuidelineListViewController: NSViewController {
     
     var rootChapters: [Chapter] = []
     
     @IBOutlet var splitView: NSSplitView!
     
     @IBOutlet var tocOutlineView: GuidelineOutlineView!
+    
+    @IBOutlet var codeTextView: NSTextView!
     
     @IBOutlet var rightPaneContainerView: NSView!
     
@@ -46,6 +48,8 @@ class ViewController: NSViewController {
     
     override func viewWillAppear() {
         
+        super.viewWillAppear()
+        
         loadingLabel.stringValue = "Downloading: Guideline list"
 
         GuidelineListDownloader.shared.delegate = self
@@ -74,6 +78,8 @@ class ViewController: NSViewController {
         }
         
         
+        codeTextView.string = ""
+        
         if chapter != nil {
             
             selectedChapterEditViewController.currentEditChapter = chapter
@@ -82,6 +88,8 @@ class ViewController: NSViewController {
             selectedChapterEditViewController.view.frame = rightPaneContainerView.frame
             rightPaneContainerView .addSubview(selectedChapterEditViewController.view)
             currentRightPaneViewController = selectedChapterEditViewController
+            
+            //codeTextView.string = chapter.guideline.getTocTreeString()
         }
         else if quickHelpViewController != nil{
             
@@ -89,6 +97,7 @@ class ViewController: NSViewController {
             quickHelpViewController.view.frame = rightPaneContainerView.frame
             rightPaneContainerView .addSubview(quickHelpViewController.view)
             currentRightPaneViewController = quickHelpViewController
+            
         }
     }
     
@@ -96,14 +105,23 @@ class ViewController: NSViewController {
         
         if app.pendingGuidelines.count > 0 {
             
+            let firstGuideline =  app.pendingGuidelines.first
+            
             GuidelineTOCDownloader.shared.delegate = self
-            GuidelineTOCDownloader.shared.downloadTOC(app.pendingGuidelines.first!)
+            GuidelineTOCDownloader.shared.downloadTOC(firstGuideline!)
+            
+            if firstGuideline?.getTocTreeString() == "" {
+            
+            }
+            else  {
+                
+            }
         }
     }
 }
 
 
-extension ViewController: NSOutlineViewDataSource {
+extension GuidelineListViewController: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
@@ -156,7 +174,7 @@ extension ViewController: NSOutlineViewDataSource {
 }
 
 
-extension ViewController: NSOutlineViewDelegate {
+extension GuidelineListViewController: NSOutlineViewDelegate {
     
     func isHeader(_ item: Any) -> Bool {
         
@@ -278,7 +296,7 @@ extension ViewController: NSOutlineViewDelegate {
     }
 }
 
-extension ViewController : GuidelineListDownloaderDelegate {
+extension GuidelineListViewController : GuidelineListDownloaderDelegate {
     
     func didReceivedGuidelineList(_ app: App, guidelines: NSArray) {
         
@@ -292,18 +310,17 @@ extension ViewController : GuidelineListDownloaderDelegate {
         }
         
         loadingLabel.stringValue = "Downloading: Table of Contents"
-
         
         downloadGuidelineTocIfNeeded()
     }
 }
 
-extension ViewController : GuidelineTOCDownloaderDelegate {
+extension GuidelineListViewController : GuidelineTOCDownloaderDelegate {
     
     func didReceivedGuidelineTOC(_ guideline: Guideline, rootChapters: NSArray) {
         
         guideline.rootChaptersData = rootChapters;
-        
+        guideline.format = .OldFormat;
         
         if app.pendingGuidelines.first == guideline {
             
@@ -319,7 +336,7 @@ extension ViewController : GuidelineTOCDownloaderDelegate {
         
         let root = [
             "name": guideline.name,
-            "tocDisplayName": guideline.name.uppercased(),
+            "tocDisplayName": guideline.name,
             "isChapter": false
             ] as [String : Any]
         
