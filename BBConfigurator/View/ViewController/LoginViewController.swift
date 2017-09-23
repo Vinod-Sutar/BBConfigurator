@@ -25,10 +25,6 @@ class LoginViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //emailTextField.stringValue = "abhijeet.sakarkar@media4u.com"
-        //passwordTextField.stringValue = "abhijeet1990"
-        
-        // Do view setup here.
     }
     
     override func viewDidAppear() {
@@ -68,7 +64,6 @@ extension LoginViewController : ValidateUserDelegate {
     func didValidUser(_ valid: Bool, userId: String, userName: String) {
 
         if valid {
-            
             
             let user = User(emailTextField.stringValue, password: passwordTextField.stringValue, userId: userId, userName: userName)
             

@@ -334,9 +334,11 @@ extension GuidelineListViewController : GuidelineTOCDownloaderDelegate {
     
     func addToTreeController(_ guideline: Guideline) {
         
+        let index = guideline.app.guidelines.index(of: guideline)! + 1
+        
         let root = [
             "name": guideline.name,
-            "tocDisplayName": guideline.name,
+            "tocDisplayName": "\(index). " + guideline.name,
             "isChapter": false
             ] as [String : Any]
         

@@ -23,4 +23,20 @@ class App: NSObject {
         self.uniqueId = uniqueId
         self.name = name
     }
+    
+    func image() -> NSImage? {
+        
+        if FileManager.default.fileExists(atPath: imagePath()) {
+            
+             return NSImage(contentsOfFile: imagePath())
+        }
+        
+        return nil
+    }
+    
+    func imagePath() -> String {
+        
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        return "\(documentDirectory)/Images/\(projectId).png"
+    }
 }

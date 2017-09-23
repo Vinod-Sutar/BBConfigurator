@@ -14,6 +14,8 @@ class MainViewController: NSViewController {
     
     @IBOutlet var mainContainerView: NSView!
     
+    @IBOutlet var logoutButton: NSButton!
+    
     @IBOutlet var deviceConnectedLabel: NSTextField!
     
     @IBOutlet var userNameLabel: NSTextField!
@@ -27,11 +29,15 @@ class MainViewController: NSViewController {
 
         mpcManager.delegate = self
         
+        showLoginView()
+    }
+    
+    func showLoginView() {
+        
         let loginViewController = self.storyboard?.instantiateController(withIdentifier: "LoginViewController") as! LoginViewController
         loginViewController.mainViewController = self
         
         setMainContainerViewController(loginViewController)
-        
     }
     
     func setMainContainerViewController(_ viewController: NSViewController) {
@@ -52,11 +58,24 @@ class MainViewController: NSViewController {
         }
         else {
             
+            logoutButton.isHidden = false
             userNameLabel.stringValue = UserManager.shared.getCurrentUser().userName
             organizationLabel.stringValue = "Börm Bruckmeier Infotech"
         }
+        
+        
     }
-
+    
+    @IBAction func logoutClicked(_ sender: Any) {
+        
+        UserManager.shared.reset()
+        showLoginView()
+        
+        logoutButton.isHidden = true
+        userNameLabel.stringValue = ""
+        organizationLabel.stringValue = ""
+    }
+    
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
@@ -64,10 +83,10 @@ class MainViewController: NSViewController {
     }
 
     func didUserValidatingComplete(_ user: User) {
+                
+        let appListViewController = self.storyboard?.instantiateController(withIdentifier: "AppListViewController") as! AppListViewController
         
-        let guidelineListViewController = self.storyboard?.instantiateController(withIdentifier: "GuidelineListViewController") as! GuidelineListViewController
-        
-        self.performSelector(onMainThread: #selector(setMainContainerViewController), with: guidelineListViewController, waitUntilDone: false)
+        self.performSelector(onMainThread: #selector(setMainContainerViewController), with: appListViewController, waitUntilDone: false)
     }
 }
 

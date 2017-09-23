@@ -1,6 +1,6 @@
 //
 //  MPCManager.swift
-//  SwiftCollectionView
+//  BBConfigurator
 //
 //  Created by Vinod on 03/09/17.
 //  Copyright © 2017 BBI-M USER1033. All rights reserved.

@@ -23,11 +23,26 @@ class UserManager: NSObject {
         UserDefaults.standard.synchronize()
     }
     
+    func isKeyPresentInUserDefaults(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
     
     func getCurrentUser() -> User! {
         
-        let decoded  = UserDefaults.standard.object(forKey: "currentUser") as! Data
-        return NSKeyedUnarchiver.unarchiveObject(with: decoded) as! User
+        if UserDefaults.standard.object(forKey: "currentUser") != nil {
+        
+            let decodedData = UserDefaults.standard.object(forKey: "currentUser") as! Data
+            return NSKeyedUnarchiver.unarchiveObject(with: decodedData) as! User
+        }
+        
+        return nil
+    }
+    
+    
+    func reset() {
+        
+        UserDefaults.standard.removeObject(forKey: "currentUser")
+        UserDefaults.standard.synchronize()
     }
 }
 
