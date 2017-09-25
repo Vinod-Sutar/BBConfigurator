@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import WebKit
 
 class GuidelineListViewController: NSViewController {
     
@@ -16,7 +17,7 @@ class GuidelineListViewController: NSViewController {
     
     @IBOutlet var tocOutlineView: GuidelineOutlineView!
     
-    @IBOutlet var codeTextView: NSTextView!
+    //@IBOutlet var codeTextView: NSTextView!
     
     @IBOutlet var rightPaneContainerView: NSView!
     
@@ -24,13 +25,17 @@ class GuidelineListViewController: NSViewController {
     
     @IBOutlet var loadingLabel: NSTextField!
     
+    @IBOutlet var appTitleLabel: NSTextField!
+    
+    @IBOutlet var webView: VSWebView!
+    
     var currentRightPaneViewController: NSViewController!
     
     var quickHelpViewController: NSViewController!
     
     var selectedChapterEditViewController: ChapterEditViewController!
     
-    var app = App("275", uniqueId: "ENAS275", name: "ACC Guidelines")
+    var app:App! = nil // = App("275", uniqueId: "ENAS275", name: "ACC Guidelines")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +60,8 @@ class GuidelineListViewController: NSViewController {
         GuidelineListDownloader.shared.delegate = self
         GuidelineListDownloader.shared.downloadList(app)
         
+        appTitleLabel.stringValue = app.name
+        
         setRightPaneWithControllerWithChapter(nil)
     }
     
@@ -78,7 +85,7 @@ class GuidelineListViewController: NSViewController {
         }
         
         
-        codeTextView.string = ""
+        //codeTextView.string = ""
         
         if chapter != nil {
             
@@ -117,6 +124,14 @@ class GuidelineListViewController: NSViewController {
                 
             }
         }
+    }
+    
+    
+    @IBAction func backClicked(_ sender: Any) {
+        
+        let appListViewController = self.storyboard?.instantiateController(withIdentifier: "AppListViewController") as! AppListViewController
+
+        MainViewManager.shared.setMainContainerViewController(appListViewController)
     }
 }
 
@@ -231,6 +246,12 @@ extension GuidelineListViewController: NSOutlineViewDelegate {
                         isSet = true
                         
                         setRightPaneWithControllerWithChapter(selectedChapter)
+                        
+                        let htmlPagePath = "http://cpms.bbinfotech.com/CMS/project/project_data/\(selectedChapter.guideline.uniqueId)/html/\(selectedChapter.htmlPage).html"
+                        
+                        let request = URLRequest(url: URL(string: htmlPagePath)!)
+                        
+                        webView.load(request)
                     }
                 }
             }

@@ -10,6 +10,8 @@ import Cocoa
 
 class AppImageView: NSImageView {
 
+    var app: App! = nil
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
@@ -34,16 +36,37 @@ class AppImageView: NSImageView {
         
         if (pBoard.types?.contains(NSURLPboardType))! {
             
-            if let files = pBoard.propertyList(forType: NSFilenamesPboardType) as? NSArray,
-                files.count <= 0 {
+            let files = pBoard.propertyList(forType: NSFilenamesPboardType) as! NSArray
+            
+            if files.count <= 0 {
                 
                 return false
             }
+            
+            self.saveAppIcon(files[0] as! String)
+            
         }
         
         return true
     }
     
+    func saveAppIcon(_ sourcePath: String) {
+        
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        
+        let destinationPath = documentDirectory + "/Images/appIcon.png"
+     
+        do {
+            
+            try FileManager.default.removeItem(atPath: destinationPath)
+            
+            try FileManager.default.copyItem(atPath: sourcePath, toPath: destinationPath)
+
+        } catch {
+            
+        }
+        
+    }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
         
@@ -68,5 +91,15 @@ class AppImageView: NSImageView {
         }
         
         return NSDragOperation.every
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        
+        let viewController = storyboard.instantiateController(withIdentifier: "GuidelineListViewController") as! GuidelineListViewController
+        viewController.app = app
+        
+        MainViewManager.shared.setMainContainerViewController(viewController)
     }
 }

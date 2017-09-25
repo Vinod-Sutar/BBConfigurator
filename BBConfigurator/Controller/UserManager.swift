@@ -11,16 +11,23 @@ import Cocoa
 class UserManager: NSObject {
 
     static let shared = UserManager()
+    
+    var currentUser:User! = nil
         
     override init() {
         
     }
     
-    func synchronize(_ user: User) {
+    func synchronize(_ user: User, remembered: Bool) {
         
-        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: user)
-        UserDefaults.standard.set(encodedData, forKey: "currentUser")
-        UserDefaults.standard.synchronize()
+        currentUser = user
+        
+        if remembered {
+         
+            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: user)
+            UserDefaults.standard.set(encodedData, forKey: "currentUser")
+            UserDefaults.standard.synchronize()
+        }
     }
     
     func isKeyPresentInUserDefaults(key: String) -> Bool {
@@ -29,8 +36,13 @@ class UserManager: NSObject {
     
     func getCurrentUser() -> User! {
         
-        if UserDefaults.standard.object(forKey: "currentUser") != nil {
+        return currentUser
+    }
+    
+    func getRemeberedUser() -> User! {
         
+        if UserDefaults.standard.object(forKey: "currentUser") != nil {
+            
             let decodedData = UserDefaults.standard.object(forKey: "currentUser") as! Data
             return NSKeyedUnarchiver.unarchiveObject(with: decodedData) as! User
         }
@@ -41,6 +53,7 @@ class UserManager: NSObject {
     
     func reset() {
         
+        currentUser = nil
         UserDefaults.standard.removeObject(forKey: "currentUser")
         UserDefaults.standard.synchronize()
     }
@@ -76,5 +89,28 @@ class User: NSObject, NSCoding {
         aCoder.encode(password, forKey: "password")
         aCoder.encode(userId, forKey: "userId")
         aCoder.encode(userName, forKey: "userName")
+    }
+    
+    func documentPath() -> String {
+        
+        
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        
+        let folderPath = "\(documentDirectory)/BBConfigurator/\(self.email!)/"
+        
+        if FileManager.default.fileExists(atPath: folderPath) == false {
+            
+            do {
+                
+                try FileManager.default.createDirectory(at: URL(fileURLWithPath: folderPath), withIntermediateDirectories: true, attributes: nil)
+            }
+            catch {
+                
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+        
+        
+        return folderPath
     }
 }

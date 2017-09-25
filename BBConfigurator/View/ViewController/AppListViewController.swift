@@ -122,11 +122,11 @@ extension AppListViewController: NSCollectionViewDataSource {
         }
         else if allApps.count == 0
         {
-            setCollectionViewPlaceHolder("No guidelines found")
+            setCollectionViewPlaceHolder("No apps found")
         }
         else if count == 0
         {
-            setCollectionViewPlaceHolder("No result found")
+            setCollectionViewPlaceHolder("No results for \"\(searchTextField.stringValue)\"")
         }
         else
         {
@@ -148,6 +148,7 @@ extension AppListViewController: NSCollectionViewDataSource {
         if let image = app.image() {
             
             item.appImageView.image = image;
+            item.appImageView.app = app;
             item.titleLabel.stringValue = app.name;
         }
         
@@ -172,6 +173,8 @@ extension AppListViewController: NSCollectionViewDelegate {
         appCollectionItem.titleLabel.stringValue = app.name
         
         appCollectionItem.appImageView.image = app.image()
+        
+        appCollectionItem.appImageView.app = app;
     }
     
     

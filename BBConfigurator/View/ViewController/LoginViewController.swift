@@ -20,6 +20,8 @@ class LoginViewController: NSViewController {
     
     @IBOutlet var validatingContentView: NSView!
     
+    @IBOutlet var rememberMeButton: NSButton!
+    
     @IBOutlet var textFieldContentView: LoginContentBackgroundView!
 
     override func viewDidLoad() {
@@ -30,7 +32,7 @@ class LoginViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        if let user = UserManager.shared.getCurrentUser() {
+        if let user = UserManager.shared.getRemeberedUser() {
             
             setLoginContentViewVisiblilty(false)
             
@@ -67,7 +69,7 @@ extension LoginViewController : ValidateUserDelegate {
             
             let user = User(emailTextField.stringValue, password: passwordTextField.stringValue, userId: userId, userName: userName)
             
-            UserManager.shared.synchronize(user)
+            UserManager.shared.synchronize(user, remembered: rememberMeButton.state == NSControlStateValueOn)
             
             mainViewController.didUserValidatingComplete(user)
         }

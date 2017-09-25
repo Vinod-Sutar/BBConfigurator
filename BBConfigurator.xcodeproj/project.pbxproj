@@ -11,6 +11,9 @@
 		1770DF7D1F76F4BE007741A9 /* VSCollectionViewItem.xib in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF7C1F769908007741A9 /* VSCollectionViewItem.xib */; };
 		1770DF801F76FA51007741A9 /* VSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF7F1F76FA51007741A9 /* VSButton.swift */; };
 		1770DF831F76FB03007741A9 /* VSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF821F76FB03007741A9 /* VSImageView.swift */; };
+		1770DF851F77C290007741A9 /* MainViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF841F77C290007741A9 /* MainViewManager.swift */; };
+		1770DF881F77CCC6007741A9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1770DF871F77CCC5007741A9 /* WebKit.framework */; };
+		1770DF8B1F77D40E007741A9 /* VSWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF8A1F77D40E007741A9 /* VSWebView.swift */; };
 		1779CB761F75917500C6A31F /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779CB751F75917500C6A31F /* MPCManager.swift */; };
 		1779CB781F7598A500C6A31F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779CB771F7598A500C6A31F /* LoginViewController.swift */; };
 		1779CB7A1F759C4B00C6A31F /* ValidateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779CB791F759C4B00C6A31F /* ValidateUser.swift */; };
@@ -41,6 +44,9 @@
 		1770DF7C1F769908007741A9 /* VSCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VSCollectionViewItem.xib; sourceTree = "<group>"; };
 		1770DF7F1F76FA51007741A9 /* VSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSButton.swift; sourceTree = "<group>"; };
 		1770DF821F76FB03007741A9 /* VSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSImageView.swift; sourceTree = "<group>"; };
+		1770DF841F77C290007741A9 /* MainViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewManager.swift; sourceTree = "<group>"; };
+		1770DF871F77CCC5007741A9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		1770DF8A1F77D40E007741A9 /* VSWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSWebView.swift; sourceTree = "<group>"; };
 		1779CB741F75857100C6A31F /* VSTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSTextView.swift; sourceTree = "<group>"; };
 		1779CB751F75917500C6A31F /* MPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
 		1779CB771F7598A500C6A31F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1770DF881F77CCC6007741A9 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +101,22 @@
 				1770DF821F76FB03007741A9 /* VSImageView.swift */,
 			);
 			path = VSImageView;
+			sourceTree = "<group>";
+		};
+		1770DF861F77CCC5007741A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1770DF871F77CCC5007741A9 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1770DF891F77D3F5007741A9 /* VSWebView */ = {
+			isa = PBXGroup;
+			children = (
+				1770DF8A1F77D40E007741A9 /* VSWebView.swift */,
+			);
+			path = VSWebView;
 			sourceTree = "<group>";
 		};
 		1779CB731F75857100C6A31F /* VSTextView */ = {
@@ -126,6 +149,7 @@
 			children = (
 				49FB93CB1F740B980013B062 /* BBConfigurator */,
 				49FB93CA1F740B980013B062 /* Products */,
+				1770DF861F77CCC5007741A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +184,7 @@
 				1779CB751F75917500C6A31F /* MPCManager.swift */,
 				49FB93E31F740CEE0013B062 /* TocCreator.swift */,
 				17CDE3061F75A1CF006A4E7A /* UserManager.swift */,
+				1770DF841F77C290007741A9 /* MainViewManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -184,6 +209,7 @@
 		49FB93FD1F740D800013B062 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1770DF891F77D3F5007741A9 /* VSWebView */,
 				1770DF811F76FAEF007741A9 /* VSImageView */,
 				1770DF7E1F76FA3C007741A9 /* VSButton */,
 				17CDE3101F7656EC006A4E7A /* VSCollectionViewItem */,
@@ -321,6 +347,7 @@
 				1770DF7A1F76604E007741A9 /* VSCollectionViewItem.swift in Sources */,
 				1779CB761F75917500C6A31F /* MPCManager.swift in Sources */,
 				49FB93E41F740CEE0013B062 /* TocCreator.swift in Sources */,
+				1770DF851F77C290007741A9 /* MainViewManager.swift in Sources */,
 				49FB93CF1F740B980013B062 /* MainViewController.swift in Sources */,
 				49FB94041F740D800013B062 /* BackgroundView.swift in Sources */,
 				1770DF801F76FA51007741A9 /* VSButton.swift in Sources */,
@@ -328,6 +355,7 @@
 				49FB93CD1F740B980013B062 /* AppDelegate.swift in Sources */,
 				49FB94061F740D800013B062 /* GuidelineOutlineView.swift in Sources */,
 				17CDE3091F763A13006A4E7A /* AppListViewController.swift in Sources */,
+				1770DF8B1F77D40E007741A9 /* VSWebView.swift in Sources */,
 				1779CB781F7598A500C6A31F /* LoginViewController.swift in Sources */,
 				49FB94121F740DC00013B062 /* HTTPRequest.swift in Sources */,
 				49FB94051F740D800013B062 /* ChapterEditViewController.swift in Sources */,

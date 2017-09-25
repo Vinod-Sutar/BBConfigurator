@@ -44,9 +44,9 @@ class Guideline: NSObject {
         
         
         
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let userDocumentPath = UserManager.shared.getCurrentUser().documentPath()
         
-        let folderPath = "\(documentDirectory)/AppMaker/Toc/\(app.projectId!)/\(uniqueId)/"
+        let folderPath = "\(userDocumentPath)Toc/\(app.projectId!)/\(uniqueId)/"
         
         let filePath = "\(folderPath)TocTree.json"
         
@@ -84,9 +84,9 @@ class Guideline: NSObject {
     
     func getTocTreeString() -> String {
         
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let userDocumentPath = UserManager.shared.getCurrentUser().documentPath()
         
-        let filePath = "\(documentDirectory)/AppMaker/Toc/\(app.projectId!)/\(uniqueId)/TocTree.json"
+        let filePath = "\(userDocumentPath)Toc/\(app.projectId!)/\(uniqueId)/TocTree.json"
         
         if FileManager.default.fileExists(atPath: filePath) {
             

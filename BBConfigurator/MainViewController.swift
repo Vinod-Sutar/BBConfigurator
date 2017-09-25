@@ -24,10 +24,13 @@ class MainViewController: NSViewController {
     
     @IBOutlet var currentMainContainerViewController: NSViewController!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         mpcManager.delegate = self
+    
+        MainViewManager.shared.delegate = self
         
         showLoginView()
     }
@@ -40,31 +43,6 @@ class MainViewController: NSViewController {
         setMainContainerViewController(loginViewController)
     }
     
-    func setMainContainerViewController(_ viewController: NSViewController) {
-        
-        if currentMainContainerViewController != nil {
-            
-            currentMainContainerViewController.view.removeFromSuperview()
-            currentMainContainerViewController.removeFromParentViewController()
-        }
-        
-        self.addChildViewController(viewController)
-        viewController.view.frame = mainContainerView.frame
-        mainContainerView.addSubview(viewController.view)
-        currentMainContainerViewController = viewController
-        
-        if viewController is LoginViewController {
-            
-        }
-        else {
-            
-            logoutButton.isHidden = false
-            userNameLabel.stringValue = UserManager.shared.getCurrentUser().userName
-            organizationLabel.stringValue = "Börm Bruckmeier Infotech"
-        }
-        
-        
-    }
     
     @IBAction func logoutClicked(_ sender: Any) {
         
@@ -132,6 +110,36 @@ extension MainViewController: MPCManagerDelegate {
             
             //sendAppDataToConnectedDevices()
         }
+    }
+}
+
+
+extension MainViewController: MainViewManagerDelegate {
+ 
+    func setMainContainerViewController(_ viewController: NSViewController) {
+        
+        if currentMainContainerViewController != nil {
+            
+            currentMainContainerViewController.view.removeFromSuperview()
+            currentMainContainerViewController.removeFromParentViewController()
+        }
+        
+        self.addChildViewController(viewController)
+        viewController.view.frame = mainContainerView.frame
+        mainContainerView.addSubview(viewController.view)
+        currentMainContainerViewController = viewController
+        
+        if viewController is LoginViewController {
+            
+        }
+        else {
+            
+            logoutButton.isHidden = false
+            userNameLabel.stringValue = UserManager.shared.getCurrentUser().userName
+            organizationLabel.stringValue = "Börm Bruckmeier Infotech"
+        }
+        
+        
     }
 }
 

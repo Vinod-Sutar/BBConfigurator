@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -723,13 +724,13 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S2k-Qy-nYB">
-                                        <rect key="frame" x="517" y="22" width="300" height="22"/>
+                                        <rect key="frame" x="517" y="20" width="300" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="E5g-sj-4j1"/>
                                             <constraint firstAttribute="width" constant="296" id="tGI-Xs-rxV"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" id="SSE-lQ-4jS">
-                                            <font key="font" metaFont="system" size="15"/>
+                                            <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -741,7 +742,7 @@
                                             <constraint firstAttribute="height" constant="17" id="zhi-b4-Ojm"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" id="Blp-8z-s3L">
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="system" size="11"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -753,7 +754,7 @@
                                     <constraint firstItem="j5D-ug-XqM" firstAttribute="leading" secondItem="bfe-XA-aXn" secondAttribute="leading" id="4Pz-M9-TRk"/>
                                     <constraint firstAttribute="trailing" secondItem="j5D-ug-XqM" secondAttribute="trailing" id="6D8-p7-IfA"/>
                                     <constraint firstItem="BSz-zg-RxG" firstAttribute="leading" secondItem="S81-Yt-ezB" secondAttribute="trailing" constant="8" id="BpN-jS-spl"/>
-                                    <constraint firstItem="S2k-Qy-nYB" firstAttribute="top" secondItem="bfe-XA-aXn" secondAttribute="top" constant="8" id="WCA-Rg-to9"/>
+                                    <constraint firstItem="S2k-Qy-nYB" firstAttribute="top" secondItem="bfe-XA-aXn" secondAttribute="top" constant="10" id="WCA-Rg-to9"/>
                                     <constraint firstAttribute="height" constant="52" id="jhg-rz-tme"/>
                                     <constraint firstAttribute="trailing" secondItem="BSz-zg-RxG" secondAttribute="trailing" constant="20" id="tes-c3-9HU"/>
                                     <constraint firstItem="BSz-zg-RxG" firstAttribute="leading" secondItem="S2k-Qy-nYB" secondAttribute="trailing" constant="10" id="wlN-yf-JSf"/>
@@ -969,6 +970,7 @@
                         <outlet property="emailTextField" destination="4mq-Ca-3R9" id="nJh-4h-urG"/>
                         <outlet property="loginContentView" destination="9f1-nH-Ky7" id="W7J-6Z-LKv"/>
                         <outlet property="passwordTextField" destination="ras-YW-hhw" id="8Ue-6N-JPg"/>
+                        <outlet property="rememberMeButton" destination="7r2-cH-0AT" id="fZZ-Ig-4bt"/>
                         <outlet property="textFieldContentView" destination="eaP-Qt-50E" id="bmo-Zk-RS1"/>
                         <outlet property="validatingContentView" destination="lpR-K5-J4D" id="2lU-Vq-D2o"/>
                     </connections>
@@ -1109,38 +1111,19 @@
                                                 <rect key="frame" x="211" y="0.0" width="430" height="517"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <subviews>
-                                                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1D-v5-sVH">
+                                                    <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mAP-cO-bJo" customClass="VSWebView" customModule="BBConfigurator" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="430" height="517"/>
-                                                        <clipView key="contentView" id="DJ3-YR-jcT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="430" height="517"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <textView importsGraphics="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Vgf-vW-HOY" customClass="VSTextView" customModule="BBConfigurator" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="430" height="517"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <size key="minSize" width="430" height="517"/>
-                                                                    <size key="maxSize" width="463" height="10000000"/>
-                                                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                </textView>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </clipView>
-                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="33g-76-Mr2">
-                                                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </scroller>
-                                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.5" horizontal="NO" id="1DM-pT-4AU">
-                                                            <rect key="frame" x="414" y="0.0" width="16" height="517"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </scroller>
-                                                    </scrollView>
+                                                        <wkWebViewConfiguration key="configuration">
+                                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                            <wkPreferences key="preferences"/>
+                                                        </wkWebViewConfiguration>
+                                                    </wkWebView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="r1D-v5-sVH" firstAttribute="leading" secondItem="4xU-Wh-pNf" secondAttribute="leading" id="Evv-wD-Lin"/>
-                                                    <constraint firstAttribute="bottom" secondItem="r1D-v5-sVH" secondAttribute="bottom" id="Fx9-7l-05x"/>
-                                                    <constraint firstItem="r1D-v5-sVH" firstAttribute="top" secondItem="4xU-Wh-pNf" secondAttribute="top" id="sW4-Gh-oF5"/>
-                                                    <constraint firstAttribute="trailing" secondItem="r1D-v5-sVH" secondAttribute="trailing" id="xX9-UV-gyx"/>
+                                                    <constraint firstAttribute="bottom" secondItem="mAP-cO-bJo" secondAttribute="bottom" id="eXW-OQ-q0h"/>
+                                                    <constraint firstItem="mAP-cO-bJo" firstAttribute="top" secondItem="4xU-Wh-pNf" secondAttribute="top" id="gn3-Ty-Zkk"/>
+                                                    <constraint firstItem="mAP-cO-bJo" firstAttribute="leading" secondItem="4xU-Wh-pNf" secondAttribute="leading" id="gxy-Gw-fqi"/>
+                                                    <constraint firstAttribute="trailing" secondItem="mAP-cO-bJo" secondAttribute="trailing" id="sGx-1o-ZyV"/>
                                                 </constraints>
                                             </customView>
                                             <customView id="Smd-tL-MdJ">
@@ -1178,6 +1161,26 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dab-0a-Me9">
+                                        <rect key="frame" x="14" y="515" width="70" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Back" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="moB-aV-zAs">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="backClicked:" target="Jx3-6c-Xmw" id="9sO-NN-EbH"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgg-CN-IV8">
+                                        <rect key="frame" x="86" y="524" width="756" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="KaQ-UC-Jj9">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="MH5-z8-gtd" firstAttribute="top" secondItem="YUq-mX-zOd" secondAttribute="top" constant="31" id="1PQ-FP-MvS"/>
@@ -1200,12 +1203,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="codeTextView" destination="Vgf-vW-HOY" id="Zx8-oe-Xxq"/>
+                        <outlet property="appTitleLabel" destination="zgg-CN-IV8" id="Fq2-y0-esj"/>
                         <outlet property="loadingLabel" destination="J6c-Dz-F7s" id="twC-YX-jIJ"/>
                         <outlet property="rightPaneContainerView" destination="n6j-pb-Wj7" id="OUw-2l-dIH"/>
                         <outlet property="splitView" destination="MH5-z8-gtd" id="xVL-08-r8X"/>
                         <outlet property="tocOutlineView" destination="9C8-wr-Mhk" id="gCd-Po-dNS"/>
                         <outlet property="treeController" destination="pXE-ca-ltH" id="iC6-6n-61Z"/>
+                        <outlet property="webView" destination="mAP-cO-bJo" id="0Gi-Mj-lx7"/>
                     </connections>
                 </viewController>
                 <customObject id="Qwz-Sp-U5f" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
