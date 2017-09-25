@@ -8,11 +8,18 @@
 
 import Cocoa
 
+protocol AppListDownloaderDelegate {
+    
+    func didReceivedAppList(_ apps: [App])
+}
+
 class AppListDownloader: NSObject {
     
     static let shared = AppListDownloader()
     
     let httpRequestManager = HTTPRequestManager()
+    
+    var delegate:AppListDownloaderDelegate?
     
     override init() {
         
@@ -21,10 +28,10 @@ class AppListDownloader: NSObject {
         httpRequestManager.delegate = self
     }
     
-    func downloadList(_ ofApp: App) {
+    func downloadList(_ ofUser: User) {
         
         let parameter = [
-            "UserId": "76"
+            "UserId": ofUser.userId
             ] as [String : String]
         
         let request = HTTPRequest("http://cpms.bbinfotech.com/CMS/handshake/cms_viewer/CMSoverviewAppRequestHandler.php", methodName: "getlistofGuidelineappProjects", parameters: parameter as NSDictionary, namespace: "urn:CMSoverviewAppRequestHandler")
@@ -39,7 +46,23 @@ extension AppListDownloader : HTTPRequestManagerDelegate {
         
         if let response = response as? NSArray {
             
-            print("Response: \(response)")
+            var appArray: [App] = []
+            
+            for app in response {
+                
+                let appItem = app as! NSDictionary
+                
+                let projectId = appItem["proj_id"] as! String
+                let uniqueId = appItem["unique_id"] as! String
+                let projectName = appItem["proj_name"] as! String
+                
+                let app = App(projectId, uniqueId: uniqueId, name: projectName)
+                
+                appArray.append(app)
+            }
+            
+            delegate?.didReceivedAppList(appArray)
+            
         }
         else {
             

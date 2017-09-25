@@ -7,8 +7,9 @@
 //
 
 import Cocoa
+import WebKit
 
-class ViewController: NSViewController {
+class GuidelineListViewController: NSViewController {
     
     var rootChapters: [Chapter] = []
     
@@ -16,11 +17,17 @@ class ViewController: NSViewController {
     
     @IBOutlet var tocOutlineView: GuidelineOutlineView!
     
+    //@IBOutlet var codeTextView: NSTextView!
+    
     @IBOutlet var rightPaneContainerView: NSView!
     
     @IBOutlet var treeController: NSTreeController!
     
     @IBOutlet var loadingLabel: NSTextField!
+    
+    @IBOutlet var appTitleLabel: NSTextField!
+    
+    @IBOutlet var webView: VSWebView!
     
     var currentRightPaneViewController: NSViewController!
     
@@ -28,7 +35,7 @@ class ViewController: NSViewController {
     
     var selectedChapterEditViewController: ChapterEditViewController!
     
-    var app = App("275", uniqueId: "ENAS275", name: "ACC Guidelines")
+    var app:App! = nil // = App("275", uniqueId: "ENAS275", name: "ACC Guidelines")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +53,14 @@ class ViewController: NSViewController {
     
     override func viewWillAppear() {
         
+        super.viewWillAppear()
+        
         loadingLabel.stringValue = "Downloading: Guideline list"
 
         GuidelineListDownloader.shared.delegate = self
         GuidelineListDownloader.shared.downloadList(app)
+        
+        appTitleLabel.stringValue = app.name
         
         setRightPaneWithControllerWithChapter(nil)
     }
@@ -74,6 +85,8 @@ class ViewController: NSViewController {
         }
         
         
+        //codeTextView.string = ""
+        
         if chapter != nil {
             
             selectedChapterEditViewController.currentEditChapter = chapter
@@ -82,6 +95,8 @@ class ViewController: NSViewController {
             selectedChapterEditViewController.view.frame = rightPaneContainerView.frame
             rightPaneContainerView .addSubview(selectedChapterEditViewController.view)
             currentRightPaneViewController = selectedChapterEditViewController
+            
+            //codeTextView.string = chapter.guideline.getTocTreeString()
         }
         else if quickHelpViewController != nil{
             
@@ -89,6 +104,7 @@ class ViewController: NSViewController {
             quickHelpViewController.view.frame = rightPaneContainerView.frame
             rightPaneContainerView .addSubview(quickHelpViewController.view)
             currentRightPaneViewController = quickHelpViewController
+            
         }
     }
     
@@ -96,14 +112,31 @@ class ViewController: NSViewController {
         
         if app.pendingGuidelines.count > 0 {
             
+            let firstGuideline =  app.pendingGuidelines.first
+            
             GuidelineTOCDownloader.shared.delegate = self
-            GuidelineTOCDownloader.shared.downloadTOC(app.pendingGuidelines.first!)
+            GuidelineTOCDownloader.shared.downloadTOC(firstGuideline!)
+            
+            if firstGuideline?.getTocTreeString() == "" {
+            
+            }
+            else  {
+                
+            }
         }
+    }
+    
+    
+    @IBAction func backClicked(_ sender: Any) {
+        
+        let appListViewController = self.storyboard?.instantiateController(withIdentifier: "AppListViewController") as! AppListViewController
+
+        MainViewManager.shared.setMainContainerViewController(appListViewController)
     }
 }
 
 
-extension ViewController: NSOutlineViewDataSource {
+extension GuidelineListViewController: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
@@ -156,7 +189,7 @@ extension ViewController: NSOutlineViewDataSource {
 }
 
 
-extension ViewController: NSOutlineViewDelegate {
+extension GuidelineListViewController: NSOutlineViewDelegate {
     
     func isHeader(_ item: Any) -> Bool {
         
@@ -213,6 +246,12 @@ extension ViewController: NSOutlineViewDelegate {
                         isSet = true
                         
                         setRightPaneWithControllerWithChapter(selectedChapter)
+                        
+                        let htmlPagePath = "http://cpms.bbinfotech.com/CMS/project/project_data/\(selectedChapter.guideline.uniqueId)/html/\(selectedChapter.htmlPage).html"
+                        
+                        let request = URLRequest(url: URL(string: htmlPagePath)!)
+                        
+                        webView.load(request)
                     }
                 }
             }
@@ -278,7 +317,7 @@ extension ViewController: NSOutlineViewDelegate {
     }
 }
 
-extension ViewController : GuidelineListDownloaderDelegate {
+extension GuidelineListViewController : GuidelineListDownloaderDelegate {
     
     func didReceivedGuidelineList(_ app: App, guidelines: NSArray) {
         
@@ -292,18 +331,17 @@ extension ViewController : GuidelineListDownloaderDelegate {
         }
         
         loadingLabel.stringValue = "Downloading: Table of Contents"
-
         
         downloadGuidelineTocIfNeeded()
     }
 }
 
-extension ViewController : GuidelineTOCDownloaderDelegate {
+extension GuidelineListViewController : GuidelineTOCDownloaderDelegate {
     
     func didReceivedGuidelineTOC(_ guideline: Guideline, rootChapters: NSArray) {
         
         guideline.rootChaptersData = rootChapters;
-        
+        guideline.format = .OldFormat;
         
         if app.pendingGuidelines.first == guideline {
             
@@ -317,9 +355,11 @@ extension ViewController : GuidelineTOCDownloaderDelegate {
     
     func addToTreeController(_ guideline: Guideline) {
         
+        let index = guideline.app.guidelines.index(of: guideline)! + 1
+        
         let root = [
             "name": guideline.name,
-            "tocDisplayName": guideline.name.uppercased(),
+            "tocDisplayName": "\(index). " + guideline.name,
             "isChapter": false
             ] as [String : Any]
         
