@@ -113,4 +113,17 @@ class User: NSObject, NSCoding {
         
         return folderPath
     }
+    
+    func appsJsonPath() -> String {
+        
+        return "\(documentPath())apps.json"
+    }
+    
+    func sendAppsJsonToPeers() {
+        
+        if FileManager.default.fileExists(atPath: appsJsonPath()) {
+            
+            MPCManager.shared.sendResourcesToPeers(appsJsonPath(), withName: "json--apps.json")
+        }
+    }
 }

@@ -20,13 +20,4 @@ class VSCollectionView: NSCollectionView {
     override func deselectItems(at indexPaths: Set<IndexPath>) {
         super.deselectItems(at: indexPaths)
     }
-    
-    override func newItem(forRepresentedObject object: Any) -> NSCollectionViewItem {
-        
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        
-        let item = storyboard.instantiateController(withIdentifier: "VSCollectionViewItem") as! VSCollectionViewItem
-        
-        return item
-    }
 }

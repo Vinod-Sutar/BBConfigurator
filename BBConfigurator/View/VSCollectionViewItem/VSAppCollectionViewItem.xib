@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="VSAppCollectionViewItem" customModule="BBConfigurator" customModuleProvider="target">
+            <connections>
+                <outlet property="appImageView" destination="UU6-5M-0rI" id="feI-kQ-jAh"/>
+                <outlet property="titleLabel" destination="RTk-K7-Sdy" id="F7k-7d-LnA"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="210"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UU6-5M-0rI" customClass="AppImageView" customModule="BBConfigurator">
+                    <rect key="frame" x="25" y="80" width="110" height="110"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110" id="Inu-gq-nFe"/>
+                        <constraint firstAttribute="height" constant="110" id="ndk-RN-v0i"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="rhi-XV-ub9"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTk-K7-Sdy">
+                    <rect key="frame" x="8" y="0.0" width="144" height="68"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="zj6-WX-FWu">
+                        <font key="font" metaFont="system"/>
+                        <string key="title">sdfsdf
+asdas
+dsdfasd
+asdas</string>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="RTk-K7-Sdy" secondAttribute="bottom" id="BpE-08-Dx5"/>
+                <constraint firstItem="RTk-K7-Sdy" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="EzT-Wb-Q2v"/>
+                <constraint firstItem="RTk-K7-Sdy" firstAttribute="top" secondItem="UU6-5M-0rI" secondAttribute="bottom" constant="12" id="J7N-gX-FVO"/>
+                <constraint firstAttribute="trailing" secondItem="RTk-K7-Sdy" secondAttribute="trailing" constant="10" id="OeS-KC-lpF"/>
+                <constraint firstAttribute="trailing" secondItem="RTk-K7-Sdy" secondAttribute="trailing" constant="10" id="P5L-qP-z7h"/>
+                <constraint firstItem="RTk-K7-Sdy" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="10" id="Xsz-sC-lp2"/>
+                <constraint firstAttribute="bottom" secondItem="RTk-K7-Sdy" secondAttribute="bottom" id="akC-xy-GoG"/>
+                <constraint firstItem="UU6-5M-0rI" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="hgq-xi-Vig"/>
+                <constraint firstItem="UU6-5M-0rI" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="xlA-cq-CCM"/>
+            </constraints>
+            <point key="canvasLocation" x="-11" y="148"/>
+        </customView>
+        <customObject id="ejT-Ue-zMp" customClass="VSAppCollectionViewItem" customModule="BBConfigurator" customModuleProvider="target">
+            <connections>
+                <outlet property="appImageView" destination="UU6-5M-0rI" id="Pzu-r3-4C7"/>
+                <outlet property="titleLabel" destination="RTk-K7-Sdy" id="DGw-8K-80d"/>
+            </connections>
+        </customObject>
+    </objects>
+</document>

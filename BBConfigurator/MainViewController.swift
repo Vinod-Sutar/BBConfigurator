@@ -9,8 +9,8 @@
 import Cocoa
 
 class MainViewController: NSViewController {
-
-    let mpcManager:MPCManager = MPCManager()
+    
+    
     
     @IBOutlet var mainContainerView: NSView!
     
@@ -27,10 +27,10 @@ class MainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        mpcManager.delegate = self
     
         MainViewManager.shared.delegate = self
+        
+        MPCManager.shared.delegate = self
         
         showLoginView()
     }
@@ -74,7 +74,7 @@ extension MainViewController: MPCManagerDelegate {
         
         var connectedDeviceString = ""
         
-        let connectedPeers = mpcManager.session.connectedPeers;
+        let connectedPeers = MPCManager.shared.session.connectedPeers;
         
         if connectedPeers.count == 0 {
             
@@ -108,7 +108,10 @@ extension MainViewController: MPCManagerDelegate {
                 }
             }
             
-            //sendAppDataToConnectedDevices()
+            if let user = UserManager.shared.getCurrentUser() {
+                
+                user.sendAppsJsonToPeers()
+            }
         }
     }
 }

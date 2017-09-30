@@ -39,9 +39,9 @@ class AppListViewController: NSViewController {
         appCollectionView.register(forDraggedTypes: [NSPasteboardTypeString])
         appCollectionView.setDraggingSourceOperationMask(.every, forLocal:true)
 
-        let item = NSNib(nibNamed: "VSCollectionViewItem", bundle: nil)
+        let item = NSNib(nibNamed: "VSAppCollectionViewItem", bundle: nil)
         
-        appCollectionView.register(item, forItemWithIdentifier: "VSCollectionViewItem")
+        appCollectionView.register(item, forItemWithIdentifier: "VSAppCollectionViewItem")
     }
     
     
@@ -140,17 +140,9 @@ extension AppListViewController: NSCollectionViewDataSource {
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         
+        let item = collectionView.makeItem(withIdentifier: "VSAppCollectionViewItem", for: indexPath) as! VSAppCollectionViewItem
         
-        let app: App = filteredApps[indexPath.item]
-        
-        let item = collectionView.makeItem(withIdentifier: "VSCollectionViewItem", for: indexPath) as! VSCollectionViewItem
-        
-        if let image = app.image() {
-            
-            item.appImageView.image = image;
-            item.appImageView.app = app;
-            item.titleLabel.stringValue = app.name;
-        }
+        item.setApp(app: filteredApps[indexPath.item])
         
         return item
     }
@@ -165,16 +157,10 @@ extension AppListViewController: NSCollectionViewDelegate {
     
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
-        
-        let app:App = filteredApps[indexPath.item]
 
-        let appCollectionItem: VSCollectionViewItem = item as! VSCollectionViewItem
-
-        appCollectionItem.titleLabel.stringValue = app.name
+        let appCollectionItem: VSAppCollectionViewItem = item as! VSAppCollectionViewItem
         
-        appCollectionItem.appImageView.image = app.image()
-        
-        appCollectionItem.appImageView.app = app;
+        appCollectionItem.setApp(app: filteredApps[indexPath.item])
     }
     
     
@@ -250,5 +236,6 @@ extension AppListViewController : AppListDownloaderDelegate {
         allApps = apps
         
         reloadAppsList()
+        
     }
 }

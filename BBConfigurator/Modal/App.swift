@@ -24,19 +24,70 @@ class App: NSObject {
         self.name = name
     }
     
-    func image() -> NSImage? {
-        
-        if FileManager.default.fileExists(atPath: imagePath()) {
+    func getAppIcon() -> NSImage! {
+       
+        if let imagePath = getAppIconPath(),
+            let image = NSImage(contentsOfFile: imagePath) {
             
-             return NSImage(contentsOfFile: imagePath())
+            return image
         }
         
         return nil
     }
     
-    func imagePath() -> String {
+    
+    func setAppIcon(_ atPath: URL) {
         
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        return "\(documentDirectory)/Images/\(projectId).png"
+        do {
+            
+            let toPath = URL(fileURLWithPath: getAppIconPath())
+            
+            if FileManager.default.fileExists(atPath: getAppIconPath()) {
+                
+                try FileManager.default.removeItem(at: toPath)
+            }
+            
+            try FileManager.default.copyItem(at: atPath, to: toPath)
+            
+            reloadAppIconToPeers()
+        }
+        catch {
+            
+            print(error)
+        }
+    }
+        
+    func getAppIconPath() -> String! {
+        
+        var filePath: String! = nil
+        
+        if let user = UserManager.shared.getCurrentUser() {
+            
+            let folderPath = user.documentPath() + "Images/"
+            
+            filePath = folderPath + "appIcon_" + projectId + ".png"
+            
+            if FileManager.default.fileExists(atPath: folderPath) == false {
+                
+                do {
+                    
+                    try FileManager.default.createDirectory(at: URL(fileURLWithPath: folderPath), withIntermediateDirectories: true, attributes: nil)
+                }
+                catch {
+                    
+                    Swift.print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        return filePath
+    }
+    
+    func reloadAppIconToPeers() {
+        
+        if FileManager.default.fileExists(atPath: getAppIconPath()) {
+            
+            MPCManager.shared.sendResourcesToPeers(getAppIconPath(), withName: "image--" + "appIcon_" + projectId + ".png")
+        }
     }
 }

@@ -69,7 +69,27 @@ class Guideline: NSObject {
         
         do {
             
-            let jsonData = try JSONSerialization.data(withJSONObject: tocTreeJsonArray, options: JSONSerialization.WritingOptions.prettyPrinted)
+            let guidelineJson = [
+                
+                "meta-info" : [
+                    "version" : "1.0",
+                    "updatedBy" : "Vinod Sutar",
+                    "updatedOn" : "20170928 1715 +0530"
+                ],
+                "guideline-info" : [
+                    
+                    "id" : id,
+                    "uniqueId" : uniqueId,
+                    "name" : name,
+                    "appId" : app.projectId,
+                ],
+                "design" : [
+                    
+                ],
+                "chapters" : tocTreeJsonArray
+            ] as [String : Any]
+            
+            let jsonData = try JSONSerialization.data(withJSONObject: guidelineJson, options: JSONSerialization.WritingOptions.prettyPrinted)
 
             let tocTreeJsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
 

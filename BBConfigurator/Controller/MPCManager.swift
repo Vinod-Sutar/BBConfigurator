@@ -16,6 +16,8 @@ protocol MPCManagerDelegate {
 
 class MPCManager: NSObject {
     
+    static let shared = MPCManager()
+    
     var delegate: MPCManagerDelegate?
     
     var session: MCSession!
@@ -34,7 +36,7 @@ class MPCManager: NSObject {
         session = MCSession(peer: peer)
         session.delegate = self
         
-        browser = MCNearbyServiceBrowser(peer: peer, serviceType: "bb-app-config")
+        browser = MCNearbyServiceBrowser(peer: peer, serviceType: "insignia")
         browser.delegate = self
         browser.startBrowsingForPeers()
     }
@@ -53,6 +55,21 @@ class MPCManager: NSObject {
                 
                 print("Error")
             }
+        }
+    }
+    
+    
+    func sendResourcesToPeers(_ filePath: String, withName: String) {
+        
+        let resourceURL = URL(fileURLWithPath: filePath)
+        
+        for peer in session.connectedPeers {
+            
+            session.sendResource(at: resourceURL, withName: withName, toPeer: peer, withCompletionHandler: { (error) -> Void in
+                if error != nil{
+                    NSLog("Error in sending resource send resource: \(String(describing: error?.localizedDescription))")
+                }
+            })
         }
     }
 }

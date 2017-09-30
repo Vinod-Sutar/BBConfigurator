@@ -8,8 +8,10 @@
 
 import Cocoa
 
-class VSCollectionViewItem: NSCollectionViewItem {
-
+class VSAppCollectionViewItem: NSCollectionViewItem {
+    
+    var app: App! = nil
+    
     @IBOutlet var titleLabel: NSTextField!
     
     @IBOutlet var appImageView: AppImageView!
@@ -17,8 +19,34 @@ class VSCollectionViewItem: NSCollectionViewItem {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
     
+    func getAppIconPath(_ user: User) -> String {
+        
+        let folderPath = user.documentPath() + "Images/"
+        
+        let filePath = folderPath + "appIcon_" + app.projectId + ".png"
+        
+        if FileManager.default.fileExists(atPath: folderPath) == false {
+            
+            do {
+                
+                try FileManager.default.createDirectory(at: URL(fileURLWithPath: folderPath), withIntermediateDirectories: true, attributes: nil)
+            }
+            catch {
+                
+            }
+        }
+        
+        return filePath
+    }
     
+    func setApp(app: App!) {
+        
+        if app != nil {
+            
+            titleLabel.stringValue = app.name
+            appImageView.setApp(app: app)
+        }
+    }
 }

@@ -10,7 +10,7 @@ import Cocoa
 
 class AppImageView: NSImageView {
 
-    var app: App! = nil
+    var currentApp: App! = nil
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -29,6 +29,11 @@ class AppImageView: NSImageView {
         register(forDraggedTypes: [NSFilenamesPboardType])
     }
     
+    func setApp(app: App) {
+        
+        currentApp = app
+        self.image = app.getAppIcon()
+    }
     
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
         
@@ -43,29 +48,16 @@ class AppImageView: NSImageView {
                 return false
             }
             
-            self.saveAppIcon(files[0] as! String)
+            let imagePath = files[0] as! String
             
+            if currentApp != nil,
+                FileManager.default.fileExists(atPath: imagePath) {
+                
+                currentApp.setAppIcon(URL(fileURLWithPath: imagePath))
+            }
         }
         
         return true
-    }
-    
-    func saveAppIcon(_ sourcePath: String) {
-        
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        
-        let destinationPath = documentDirectory + "/Images/appIcon.png"
-     
-        do {
-            
-            try FileManager.default.removeItem(atPath: destinationPath)
-            
-            try FileManager.default.copyItem(atPath: sourcePath, toPath: destinationPath)
-
-        } catch {
-            
-        }
-        
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
@@ -98,7 +90,7 @@ class AppImageView: NSImageView {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         
         let viewController = storyboard.instantiateController(withIdentifier: "GuidelineListViewController") as! GuidelineListViewController
-        viewController.app = app
+        viewController.app = currentApp
         
         MainViewManager.shared.setMainContainerViewController(viewController)
     }

@@ -69,7 +69,7 @@ extension LoginViewController : ValidateUserDelegate {
             
             let user = User(emailTextField.stringValue, password: passwordTextField.stringValue, userId: userId, userName: userName)
             
-            UserManager.shared.synchronize(user, remembered: rememberMeButton.state == NSControlStateValueOn)
+            UserManager.shared.synchronize(user, remembered: rememberMeButton.state == NSOnState)
             
             mainViewController.didUserValidatingComplete(user)
         }

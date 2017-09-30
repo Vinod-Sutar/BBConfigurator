@@ -61,6 +61,33 @@ extension AppListDownloader : HTTPRequestManagerDelegate {
                 appArray.append(app)
             }
             
+            if let user = UserManager.shared.getCurrentUser() {
+                
+                let userDocumentPath = user.documentPath()
+                
+                let filePath = "\(userDocumentPath)apps.json"
+                
+                let fileURL = URL(fileURLWithPath: filePath)
+                
+                do {
+                    
+                    let jsonData = try JSONSerialization.data(withJSONObject: response, options: JSONSerialization.WritingOptions.prettyPrinted)
+                    
+                    let appsJsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
+                    
+                    try appsJsonString.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+                    
+                }
+                catch {
+                    
+                }
+                
+                if let user = UserManager.shared.getCurrentUser() {
+                    
+                    user.sendAppsJsonToPeers()
+                }
+             }
+            
             delegate?.didReceivedAppList(appArray)
             
         }
