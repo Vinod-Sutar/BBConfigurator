@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import WebKit
 
 class GuidelineListViewController: NSViewController {
     
@@ -19,6 +18,8 @@ class GuidelineListViewController: NSViewController {
     
     //@IBOutlet var codeTextView: NSTextView!
     
+    @IBOutlet var middlePaneContainerView: NSView!
+    
     @IBOutlet var rightPaneContainerView: NSView!
     
     @IBOutlet var treeController: NSTreeController!
@@ -29,13 +30,19 @@ class GuidelineListViewController: NSViewController {
     
     @IBOutlet var webView: VSWebView!
     
+    var currentMiddlePaneViewController: NSViewController!
+    
     var currentRightPaneViewController: NSViewController!
     
     var quickHelpViewController: NSViewController!
     
     var selectedChapterEditViewController: ChapterEditViewController!
     
-    var app:App! = nil // = App("275", uniqueId: "ENAS275", name: "ACC Guidelines")
+    var selectedGuidelineEditViewController: DefaultViewController!
+    
+    var selectedChapterContentViewController: ChapterContentViewController!
+    
+    var app:App! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +56,10 @@ class GuidelineListViewController: NSViewController {
         quickHelpViewController = self.storyboard?.instantiateController(withIdentifier: "QuickHelpViewController") as! NSViewController
         
         selectedChapterEditViewController = self.storyboard?.instantiateController(withIdentifier: "ChapterEditViewController") as! ChapterEditViewController
+        
+        selectedGuidelineEditViewController = self.storyboard?.instantiateController(withIdentifier: "DefaultViewController") as! DefaultViewController
+        
+        selectedChapterContentViewController = self.storyboard?.instantiateController(withIdentifier: "ChapterContentViewController") as! ChapterContentViewController
     }
     
     override func viewWillAppear() {
@@ -60,9 +71,9 @@ class GuidelineListViewController: NSViewController {
         GuidelineListDownloader.shared.delegate = self
         GuidelineListDownloader.shared.downloadList(app)
         
-        appTitleLabel.stringValue = app.name
+        appTitleLabel.stringValue = "App: " + app.name + " (P-" + app.projectId + " /U-" + app.uniqueId + " )"
         
-        setRightPaneWithControllerWithChapter(nil)
+        setContainerView(representedObject:nil)
     }
     
     func guidelineListUpdated() {
@@ -76,27 +87,48 @@ class GuidelineListViewController: NSViewController {
         }
     }
     
-    func setRightPaneWithControllerWithChapter(_ chapter: Chapter!) {
+    func removeCurrentPane() {
+        
+        if currentMiddlePaneViewController != nil {
+            
+            currentMiddlePaneViewController.view.removeFromSuperview()
+            currentMiddlePaneViewController.removeFromParentViewController()
+        }
         
         if currentRightPaneViewController != nil {
             
             currentRightPaneViewController.view.removeFromSuperview()
             currentRightPaneViewController.removeFromParentViewController()
         }
+    }
+    
+    func setContainerView(representedObject: Any!) {
         
+        removeCurrentPane()
         
-        //codeTextView.string = ""
-        
-        if chapter != nil {
+        if representedObject is Chapter,
+            case let selectedChapter = representedObject as! Chapter {
             
-            selectedChapterEditViewController.currentEditChapter = chapter
+            selectedChapterContentViewController.representedChapter = selectedChapter
+            self.addChildViewController(selectedChapterContentViewController)
+            selectedChapterContentViewController.view.frame = middlePaneContainerView.frame
+            middlePaneContainerView .addSubview(selectedChapterContentViewController.view)
+            currentMiddlePaneViewController = selectedChapterContentViewController
             
+            selectedChapterEditViewController.currentEditChapter = selectedChapter
             self.addChildViewController(selectedChapterEditViewController)
             selectedChapterEditViewController.view.frame = rightPaneContainerView.frame
             rightPaneContainerView .addSubview(selectedChapterEditViewController.view)
             currentRightPaneViewController = selectedChapterEditViewController
+        }
+        else if representedObject is Guideline,
+            case let selectedGuideline = representedObject as! Guideline {
             
-            //codeTextView.string = chapter.guideline.getTocTreeString()
+            selectedGuidelineEditViewController.currentEditGuideline = selectedGuideline
+            self.addChildViewController(selectedGuidelineEditViewController)
+            selectedGuidelineEditViewController.view.frame = middlePaneContainerView.frame
+            middlePaneContainerView .addSubview(selectedGuidelineEditViewController.view)
+            currentMiddlePaneViewController = selectedGuidelineEditViewController
         }
         else if quickHelpViewController != nil{
             
@@ -245,21 +277,30 @@ extension GuidelineListViewController: NSOutlineViewDelegate {
                         
                         isSet = true
                         
-                        setRightPaneWithControllerWithChapter(selectedChapter)
-                        
+                        setContainerView(representedObject:selectedChapter)
+                        /*
                         let htmlPagePath = "http://cpms.bbinfotech.com/CMS/project/project_data/\(selectedChapter.guideline.uniqueId)/html/\(selectedChapter.htmlPage).html"
                         
                         let request = URLRequest(url: URL(string: htmlPagePath)!)
                         
                         webView.load(request)
+                         */
                     }
+                }
+                else if let representedObject = selectedItem.representedObject,
+                    representedObject is Guideline,
+                    case let selectedGuideline = representedObject as! Guideline{
+                    
+                    isSet = true
+                    
+                    setContainerView(representedObject:selectedGuideline)
                 }
             }
         }
         
         if isSet == false {
             
-            setRightPaneWithControllerWithChapter(nil)
+            setContainerView(representedObject:nil)
         }
     }
     
@@ -355,23 +396,15 @@ extension GuidelineListViewController : GuidelineTOCDownloaderDelegate {
     
     func addToTreeController(_ guideline: Guideline) {
         
-        let index = guideline.app.guidelines.index(of: guideline)! + 1
-        
-        let root = [
-            "name": guideline.name,
-            "tocDisplayName": "\(index). " + guideline.name,
-            "isChapter": false
-            ] as [String : Any]
-        
-        let dict:NSMutableDictionary = NSMutableDictionary(dictionary: root)
-        
-        guideline.rootChapters = TocCreator().getRootChapter(guideline, rootChapters: guideline.rootChaptersData)
+        guideline.chapters = TocCreator().getRootChapter(guideline, rootChapters: guideline.rootChaptersData)
         
         guideline.exportTocJson()
         
-        dict.setObject(guideline.rootChapters, forKey: "chapters" as NSCopying)
+        let index = guideline.app.guidelines.index(of: guideline)! + 1
+
+        guideline.tocDisplayName = "\(index). " + guideline.tocDisplayName
         
-        treeController.addObject(dict)
+        treeController.addObject(guideline)
         
         if app.pendingGuidelines.count == 0 {
             

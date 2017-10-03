@@ -29,20 +29,25 @@ class GuidelineOutlineView: NSOutlineView {
                 
                 if let representedObject = selectedItem.representedObject,
                     representedObject is Chapter,
-                    case let selectedChapter = representedObject as! Chapter{
+                    case let selectedChapter = representedObject as! Chapter {
                     
-                    if selectedChapter.isChapter() {
-                        
-                        let menu = NSMenu(title: "Context menu")
-                        
-                        menu.insertItem(withTitle: "Delete", action: #selector(deleteChapter), keyEquivalent: "", at: 0)
-                        
-                        menu.insertItem(NSMenuItem.separator(), at: 0)
-                        
-                        menu.insertItem(withTitle: "Edit", action: #selector(editChapter), keyEquivalent: "", at: 0)
-                        
-                        return menu;
-                    }
+                    
+                    let menu = NSMenu(title: "Context menu")
+                    
+                    
+                    menu.addItem(withTitle: "Add parent chapter", action: #selector(addParentChapter), keyEquivalent: "")
+                    
+                    menu.addItem(NSMenuItem.separator())
+                    menu.addItem(withTitle: "Add chapter above", action: #selector(addChapterAbove), keyEquivalent: "")
+                    menu.addItem(withTitle: "Add chapter below", action: #selector(addChapterBelow), keyEquivalent: "")
+                    
+                    menu.addItem(NSMenuItem.separator())
+                    
+                    let chapterName = "Delete \"" + selectedChapter.name + "\""
+                    
+                    menu.addItem(withTitle: chapterName, action: #selector(deleteChapter), keyEquivalent: "")
+                    
+                    return menu;
                 }
             }
         }
@@ -50,13 +55,23 @@ class GuidelineOutlineView: NSOutlineView {
         return nil
     }
     
-    func editChapter() {
+    func addParentChapter() {
         
-        self.print("Edit clicked")
+        Swift.print("Add Parent Chapter")
+    }
+    
+    func addChapterAbove() {
+        
+        Swift.print("Add Chapter Above")
+    }
+    
+    func addChapterBelow() {
+        
+        Swift.print("Add Chapter Below")
     }
     
     func deleteChapter() {
         
-        self.print("Delete clicked")
+        Swift.print("Delete clicked")
     }
 }

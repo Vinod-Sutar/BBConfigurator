@@ -24,6 +24,7 @@ class App: NSObject {
         self.name = name
     }
     
+    
     func getAppIcon() -> NSImage! {
        
         if let imagePath = getAppIconPath(),
@@ -56,6 +57,7 @@ class App: NSObject {
             print(error)
         }
     }
+    
         
     func getAppIconPath() -> String! {
         
@@ -63,9 +65,9 @@ class App: NSObject {
         
         if let user = UserManager.shared.getCurrentUser() {
             
-            let folderPath = user.documentPath() + "Images/"
+            let folderPath = user.documentPath() + projectId + "/"
             
-            filePath = folderPath + "appIcon_" + projectId + ".png"
+            filePath = folderPath + "Icon.png"
             
             if FileManager.default.fileExists(atPath: folderPath) == false {
                 
@@ -81,6 +83,29 @@ class App: NSObject {
         }
         
         return filePath
+    }
+    
+    func deleteAppIcon() -> Bool {
+        
+        do {
+            
+            let toPath = URL(fileURLWithPath: getAppIconPath())
+            
+            if FileManager.default.fileExists(atPath: getAppIconPath()) {
+                
+                try FileManager.default.removeItem(at: toPath)
+            }
+            
+            reloadAppIconToPeers()
+            
+            return true
+        }
+        catch {
+            
+            print(error)
+        }
+        
+        return false
     }
     
     func reloadAppIconToPeers() {

@@ -14,7 +14,7 @@ class VSAppCollectionViewItem: NSCollectionViewItem {
     
     @IBOutlet var titleLabel: NSTextField!
     
-    @IBOutlet var appImageView: AppImageView!
+    @IBOutlet var appImageView: VSAppImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
