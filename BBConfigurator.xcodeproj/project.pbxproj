@@ -7,18 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1725672E1F82755300461323 /* ChapterContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1725672D1F82755300461323 /* ChapterContentViewController.swift */; };
+		172567301F827BE000461323 /* ChapterWebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1725672F1F827BE000461323 /* ChapterWebContentViewController.swift */; };
+		172567321F827BEF00461323 /* ChapterSourceContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172567311F827BEF00461323 /* ChapterSourceContentViewController.swift */; };
 		1770DF7A1F76604E007741A9 /* VSCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF781F76604E007741A9 /* VSCollectionViewItem.swift */; };
 		1770DF801F76FA51007741A9 /* VSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF7F1F76FA51007741A9 /* VSButton.swift */; };
-		1770DF831F76FB03007741A9 /* VSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF821F76FB03007741A9 /* VSImageView.swift */; };
 		1770DF851F77C290007741A9 /* MainViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF841F77C290007741A9 /* MainViewManager.swift */; };
 		1770DF881F77CCC6007741A9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1770DF871F77CCC5007741A9 /* WebKit.framework */; };
 		1770DF8B1F77D40E007741A9 /* VSWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1770DF8A1F77D40E007741A9 /* VSWebView.swift */; };
 		1779CB761F75917500C6A31F /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779CB751F75917500C6A31F /* MPCManager.swift */; };
 		1779CB781F7598A500C6A31F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779CB771F7598A500C6A31F /* LoginViewController.swift */; };
 		1779CB7A1F759C4B00C6A31F /* ValidateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779CB791F759C4B00C6A31F /* ValidateUser.swift */; };
+		17B444D11F8216BA00A9505B /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B444D01F8216BA00A9505B /* DefaultViewController.swift */; };
+		17B444D31F8250F800A9505B /* NSImage+VSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B444D21F8250F800A9505B /* NSImage+VSImage.swift */; };
+		17B444D51F8257CD00A9505B /* DefaultContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B444D41F8257CD00A9505B /* DefaultContentView.swift */; };
+		17B444D81F8261BF00A9505B /* NSBezierPath+VSBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B444D71F8261BF00A9505B /* NSBezierPath+VSBezierPath.swift */; };
 		17CDE3071F75A1CF006A4E7A /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CDE3061F75A1CF006A4E7A /* UserManager.swift */; };
 		17CDE3091F763A13006A4E7A /* AppListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CDE3081F763A13006A4E7A /* AppListViewController.swift */; };
 		17CDE30F1F764F04006A4E7A /* VSCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CDE30B1F763B2A006A4E7A /* VSCollectionView.swift */; };
+		17D2EA671F8111B0003F0E25 /* VSDefaultImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2EA661F8111B0003F0E25 /* VSDefaultImageView.swift */; };
+		17D2EA691F8111F5003F0E25 /* VSGuidelineImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2EA681F8111F5003F0E25 /* VSGuidelineImageView.swift */; };
+		17D2EA6B1F811223003F0E25 /* VSAppImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2EA6A1F811223003F0E25 /* VSAppImageView.swift */; };
 		490845B51F7D300300BB10C4 /* VSAppCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490845B41F7D300300BB10C4 /* VSAppCollectionViewItem.xib */; };
 		49FB93CD1F740B980013B062 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB93CC1F740B980013B062 /* AppDelegate.swift */; };
 		49FB93CF1F740B980013B062 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB93CE1F740B980013B062 /* MainViewController.swift */; };
@@ -40,9 +49,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1725672D1F82755300461323 /* ChapterContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterContentViewController.swift; sourceTree = "<group>"; };
+		1725672F1F827BE000461323 /* ChapterWebContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterWebContentViewController.swift; sourceTree = "<group>"; };
+		172567311F827BEF00461323 /* ChapterSourceContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterSourceContentViewController.swift; sourceTree = "<group>"; };
 		1770DF781F76604E007741A9 /* VSCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSCollectionViewItem.swift; sourceTree = "<group>"; };
 		1770DF7F1F76FA51007741A9 /* VSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSButton.swift; sourceTree = "<group>"; };
-		1770DF821F76FB03007741A9 /* VSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSImageView.swift; sourceTree = "<group>"; };
 		1770DF841F77C290007741A9 /* MainViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewManager.swift; sourceTree = "<group>"; };
 		1770DF871F77CCC5007741A9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		1770DF8A1F77D40E007741A9 /* VSWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSWebView.swift; sourceTree = "<group>"; };
@@ -50,9 +61,16 @@
 		1779CB751F75917500C6A31F /* MPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
 		1779CB771F7598A500C6A31F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1779CB791F759C4B00C6A31F /* ValidateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUser.swift; sourceTree = "<group>"; };
+		17B444D01F8216BA00A9505B /* DefaultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
+		17B444D21F8250F800A9505B /* NSImage+VSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+VSImage.swift"; sourceTree = "<group>"; };
+		17B444D41F8257CD00A9505B /* DefaultContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultContentView.swift; sourceTree = "<group>"; };
+		17B444D71F8261BF00A9505B /* NSBezierPath+VSBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+VSBezierPath.swift"; sourceTree = "<group>"; };
 		17CDE3061F75A1CF006A4E7A /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		17CDE3081F763A13006A4E7A /* AppListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListViewController.swift; sourceTree = "<group>"; };
 		17CDE30B1F763B2A006A4E7A /* VSCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSCollectionView.swift; sourceTree = "<group>"; };
+		17D2EA661F8111B0003F0E25 /* VSDefaultImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSDefaultImageView.swift; sourceTree = "<group>"; };
+		17D2EA681F8111F5003F0E25 /* VSGuidelineImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSGuidelineImageView.swift; sourceTree = "<group>"; };
+		17D2EA6A1F811223003F0E25 /* VSAppImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSAppImageView.swift; sourceTree = "<group>"; };
 		490845B41F7D300300BB10C4 /* VSAppCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VSAppCollectionViewItem.xib; sourceTree = "<group>"; };
 		49FB93C91F740B980013B062 /* BBConfigurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBConfigurator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FB93CC1F740B980013B062 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +116,10 @@
 		1770DF811F76FAEF007741A9 /* VSImageView */ = {
 			isa = PBXGroup;
 			children = (
-				1770DF821F76FB03007741A9 /* VSImageView.swift */,
+				17D2EA6A1F811223003F0E25 /* VSAppImageView.swift */,
+				17D2EA681F8111F5003F0E25 /* VSGuidelineImageView.swift */,
+				17D2EA661F8111B0003F0E25 /* VSDefaultImageView.swift */,
+				17B444D21F8250F800A9505B /* NSImage+VSImage.swift */,
 			);
 			path = VSImageView;
 			sourceTree = "<group>";
@@ -127,6 +148,14 @@
 			path = VSTextView;
 			sourceTree = "<group>";
 		};
+		17B444D61F8261A800A9505B /* VSBezierPath */ = {
+			isa = PBXGroup;
+			children = (
+				17B444D71F8261BF00A9505B /* NSBezierPath+VSBezierPath.swift */,
+			);
+			path = VSBezierPath;
+			sourceTree = "<group>";
+		};
 		17CDE30A1F763B1E006A4E7A /* VSCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +171,14 @@
 				490845B41F7D300300BB10C4 /* VSAppCollectionViewItem.xib */,
 			);
 			path = VSCollectionViewItem;
+			sourceTree = "<group>";
+		};
+		17D2EA631F810BE2003F0E25 /* VSView */ = {
+			isa = PBXGroup;
+			children = (
+				17B444D41F8257CD00A9505B /* DefaultContentView.swift */,
+			);
+			path = VSView;
 			sourceTree = "<group>";
 		};
 		49FB93C01F740B980013B062 = {
@@ -200,8 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				49FB93F01F740D0D0013B062 /* App.swift */,
-				49FB93F11F740D0D0013B062 /* Chapter.swift */,
 				49FB93F21F740D0D0013B062 /* Guideline.swift */,
+				49FB93F11F740D0D0013B062 /* Chapter.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -209,6 +246,8 @@
 		49FB93FD1F740D800013B062 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17B444D61F8261A800A9505B /* VSBezierPath */,
+				17D2EA631F810BE2003F0E25 /* VSView */,
 				1770DF891F77D3F5007741A9 /* VSWebView */,
 				1770DF811F76FAEF007741A9 /* VSImageView */,
 				1770DF7E1F76FA3C007741A9 /* VSButton */,
@@ -232,11 +271,15 @@
 		49FB94001F740D800013B062 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				17B444D01F8216BA00A9505B /* DefaultViewController.swift */,
 				49FB94011F740D800013B062 /* ChapterEditViewController.swift */,
 				17CDE3081F763A13006A4E7A /* AppListViewController.swift */,
 				49FB94021F740D800013B062 /* GuidelineOutlineView.swift */,
 				49FB94031F740D800013B062 /* GuidelineListViewController.swift */,
 				1779CB771F7598A500C6A31F /* LoginViewController.swift */,
+				1725672D1F82755300461323 /* ChapterContentViewController.swift */,
+				1725672F1F827BE000461323 /* ChapterWebContentViewController.swift */,
+				172567311F827BEF00461323 /* ChapterSourceContentViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -339,26 +382,35 @@
 				49FB94111F740DC00013B062 /* GuidelineTOCDownloader.swift in Sources */,
 				49FB940F1F740DC00013B062 /* AppListDownloader.swift in Sources */,
 				17CDE3071F75A1CF006A4E7A /* UserManager.swift in Sources */,
+				17B444D51F8257CD00A9505B /* DefaultContentView.swift in Sources */,
 				49FB94101F740DC00013B062 /* GuidelineListDownloader.swift in Sources */,
 				49FB94071F740D800013B062 /* GuidelineListViewController.swift in Sources */,
-				1770DF831F76FB03007741A9 /* VSImageView.swift in Sources */,
+				172567301F827BE000461323 /* ChapterWebContentViewController.swift in Sources */,
 				49FB93F31F740D0D0013B062 /* App.swift in Sources */,
 				49FB94131F740DC00013B062 /* HTTPRequestManager.swift in Sources */,
+				17D2EA691F8111F5003F0E25 /* VSGuidelineImageView.swift in Sources */,
+				17B444D11F8216BA00A9505B /* DefaultViewController.swift in Sources */,
+				17B444D81F8261BF00A9505B /* NSBezierPath+VSBezierPath.swift in Sources */,
 				1770DF7A1F76604E007741A9 /* VSCollectionViewItem.swift in Sources */,
 				1779CB761F75917500C6A31F /* MPCManager.swift in Sources */,
 				49FB93E41F740CEE0013B062 /* TocCreator.swift in Sources */,
+				17D2EA671F8111B0003F0E25 /* VSDefaultImageView.swift in Sources */,
 				1770DF851F77C290007741A9 /* MainViewManager.swift in Sources */,
+				1725672E1F82755300461323 /* ChapterContentViewController.swift in Sources */,
 				49FB93CF1F740B980013B062 /* MainViewController.swift in Sources */,
 				49FB94041F740D800013B062 /* BackgroundView.swift in Sources */,
 				1770DF801F76FA51007741A9 /* VSButton.swift in Sources */,
 				49FB93F51F740D0D0013B062 /* Guideline.swift in Sources */,
+				17B444D31F8250F800A9505B /* NSImage+VSImage.swift in Sources */,
 				49FB93CD1F740B980013B062 /* AppDelegate.swift in Sources */,
 				49FB94061F740D800013B062 /* GuidelineOutlineView.swift in Sources */,
 				17CDE3091F763A13006A4E7A /* AppListViewController.swift in Sources */,
 				1770DF8B1F77D40E007741A9 /* VSWebView.swift in Sources */,
 				1779CB781F7598A500C6A31F /* LoginViewController.swift in Sources */,
 				49FB94121F740DC00013B062 /* HTTPRequest.swift in Sources */,
+				172567321F827BEF00461323 /* ChapterSourceContentViewController.swift in Sources */,
 				49FB94051F740D800013B062 /* ChapterEditViewController.swift in Sources */,
+				17D2EA6B1F811223003F0E25 /* VSAppImageView.swift in Sources */,
 				1779CB7A1F759C4B00C6A31F /* ValidateUser.swift in Sources */,
 				49FB93F41F740D0D0013B062 /* Chapter.swift in Sources */,
 			);
