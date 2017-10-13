@@ -10,7 +10,7 @@ import Cocoa
 
 protocol AppListDownloaderDelegate {
     
-    func didReceivedAppList(_ apps: [App])
+    func didReceivedAppList()
 }
 
 class AppListDownloader: NSObject {
@@ -46,49 +46,9 @@ extension AppListDownloader : HTTPRequestManagerDelegate {
         
         if let response = response as? NSArray {
             
-            var appArray: [App] = []
+            AppManager.shared.saveAppList(apps: response)
             
-            for app in response {
-                
-                let appItem = app as! NSDictionary
-                
-                let projectId = appItem["proj_id"] as! String
-                let uniqueId = appItem["unique_id"] as! String
-                let projectName = appItem["proj_name"] as! String
-                
-                let app = App(projectId, uniqueId: uniqueId, name: projectName)
-                
-                appArray.append(app)
-            }
-            
-            if let user = UserManager.shared.getCurrentUser() {
-                
-                let userDocumentPath = user.documentPath()
-                
-                let filePath = "\(userDocumentPath)apps.json"
-                
-                let fileURL = URL(fileURLWithPath: filePath)
-                
-                do {
-                    
-                    let jsonData = try JSONSerialization.data(withJSONObject: response, options: JSONSerialization.WritingOptions.prettyPrinted)
-                    
-                    let appsJsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
-                    
-                    try appsJsonString.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
-                    
-                }
-                catch {
-                    
-                }
-                
-                if let user = UserManager.shared.getCurrentUser() {
-                    
-                    user.sendAppsJsonToPeers()
-                }
-             }
-            
-            delegate?.didReceivedAppList(appArray)
+            delegate?.didReceivedAppList()
             
         }
         else {

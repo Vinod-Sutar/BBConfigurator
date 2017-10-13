@@ -29,6 +29,8 @@
 		17D2EA691F8111F5003F0E25 /* VSGuidelineImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2EA681F8111F5003F0E25 /* VSGuidelineImageView.swift */; };
 		17D2EA6B1F811223003F0E25 /* VSAppImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2EA6A1F811223003F0E25 /* VSAppImageView.swift */; };
 		490845B51F7D300300BB10C4 /* VSAppCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490845B41F7D300300BB10C4 /* VSAppCollectionViewItem.xib */; };
+		49841D051F90C2A4009C391B /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49841D041F90C2A4009C391B /* AppManager.swift */; };
+		49841D071F90E072009C391B /* GuidelineEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49841D061F90E072009C391B /* GuidelineEditViewController.swift */; };
 		49FB93CD1F740B980013B062 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB93CC1F740B980013B062 /* AppDelegate.swift */; };
 		49FB93CF1F740B980013B062 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FB93CE1F740B980013B062 /* MainViewController.swift */; };
 		49FB93D11F740B980013B062 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FB93D01F740B980013B062 /* Assets.xcassets */; };
@@ -72,6 +74,8 @@
 		17D2EA681F8111F5003F0E25 /* VSGuidelineImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSGuidelineImageView.swift; sourceTree = "<group>"; };
 		17D2EA6A1F811223003F0E25 /* VSAppImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSAppImageView.swift; sourceTree = "<group>"; };
 		490845B41F7D300300BB10C4 /* VSAppCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VSAppCollectionViewItem.xib; sourceTree = "<group>"; };
+		49841D041F90C2A4009C391B /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		49841D061F90E072009C391B /* GuidelineEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidelineEditViewController.swift; sourceTree = "<group>"; };
 		49FB93C91F740B980013B062 /* BBConfigurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBConfigurator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FB93CC1F740B980013B062 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49FB93CE1F740B980013B062 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 				49FB93E31F740CEE0013B062 /* TocCreator.swift */,
 				17CDE3061F75A1CF006A4E7A /* UserManager.swift */,
 				1770DF841F77C290007741A9 /* MainViewManager.swift */,
+				49841D041F90C2A4009C391B /* AppManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				1725672D1F82755300461323 /* ChapterContentViewController.swift */,
 				1725672F1F827BE000461323 /* ChapterWebContentViewController.swift */,
 				172567311F827BEF00461323 /* ChapterSourceContentViewController.swift */,
+				49841D061F90E072009C391B /* GuidelineEditViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49841D071F90E072009C391B /* GuidelineEditViewController.swift in Sources */,
 				17CDE30F1F764F04006A4E7A /* VSCollectionView.swift in Sources */,
 				49FB94111F740DC00013B062 /* GuidelineTOCDownloader.swift in Sources */,
 				49FB940F1F740DC00013B062 /* AppListDownloader.swift in Sources */,
@@ -393,6 +400,7 @@
 				17B444D81F8261BF00A9505B /* NSBezierPath+VSBezierPath.swift in Sources */,
 				1770DF7A1F76604E007741A9 /* VSCollectionViewItem.swift in Sources */,
 				1779CB761F75917500C6A31F /* MPCManager.swift in Sources */,
+				49841D051F90C2A4009C391B /* AppManager.swift in Sources */,
 				49FB93E41F740CEE0013B062 /* TocCreator.swift in Sources */,
 				17D2EA671F8111B0003F0E25 /* VSDefaultImageView.swift in Sources */,
 				1770DF851F77C290007741A9 /* MainViewManager.swift in Sources */,

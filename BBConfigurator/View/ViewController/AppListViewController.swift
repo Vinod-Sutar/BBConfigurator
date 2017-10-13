@@ -22,8 +22,6 @@ class AppListViewController: NSViewController {
     
     var draggingItem: NSCollectionViewItem?
     
-    var loadingFlag = true
-        
     @IBOutlet var appCollectionView: VSCollectionView!
     
     @IBOutlet var searchTextField: NSTextField!
@@ -31,6 +29,8 @@ class AppListViewController: NSViewController {
     @IBOutlet var loadingLabel: NSTextField!
     
     @IBOutlet var connectedDevicesLabel: NSTextField!
+    
+    @IBOutlet weak var refreshButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +47,26 @@ class AppListViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        
+        setCollectionViewPlaceHolder("")
+        
+        allApps = AppManager.shared.appList()
+        
+        if allApps.count == 0 {
+        
+            refreshClicked(refreshButton)
+        }
+        
+        reloadAppsList()
+    }
+    
+    @IBAction func refreshClicked(_ sender: Any) {
+        
+        OperationQueue.main.addOperation (){
+            
+            self.refreshButton.stringValue = "Loading"
+            self.refreshButton.isEnabled = false
+        }
         
         AppListDownloader.shared.delegate = self
         AppListDownloader.shared.downloadList(UserManager.shared.getCurrentUser()!)
@@ -75,8 +95,6 @@ class AppListViewController: NSViewController {
     
     public func reloadAppsList() {
         
-        
-        
         if searchTextField.stringValue == ""
         {
             filteredApps = allApps;
@@ -103,7 +121,6 @@ extension AppListViewController: NSTextFieldDelegate {
     
     func textField(_ textField: NSTextField, textView: NSTextView, shouldSelectCandidateAt index: Int) -> Bool {
         
-        print("Hurray")
         return true
     }
 }
@@ -113,14 +130,9 @@ extension AppListViewController: NSCollectionViewDataSource {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
-        
         let count: Int = filteredApps.count
         
-        if loadingFlag {
-            
-            setCollectionViewPlaceHolder("Loading apps...")
-        }
-        else if allApps.count == 0
+        if allApps.count == 0
         {
             setCollectionViewPlaceHolder("No apps found")
         }
@@ -227,15 +239,17 @@ extension AppListViewController: NSCollectionViewDelegate {
 
 extension AppListViewController : AppListDownloaderDelegate {
     
-    func didReceivedAppList(_ apps: [App]) {
+    func didReceivedAppList() {
         
-        loadingFlag = false
         
-        filteredApps = apps
+        OperationQueue.main.addOperation (){
         
-        allApps = apps
+            self.refreshButton.stringValue = "Refresh"
+            self.refreshButton.isEnabled = true
+        }
+        
+        allApps = AppManager.shared.appList()
         
         reloadAppsList()
-        
     }
 }
